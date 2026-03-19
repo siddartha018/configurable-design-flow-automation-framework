@@ -1,0 +1,2 @@
+set json {{"stages":[{"name":"synthesis","depends_on":[]},{"name":"placement","depends_on":["synthesis"]},{"name":"timing","depends_on":["placement"]},{"name":"dft_scan_insertion","depends_on":["synthesis"]},{"name":"dft_atpg","depends_on":["dft_scan_insertion"]},{"name":"dfp_power_intent","depends_on":["synthesis"]},{"name":"dfp_power_analysis","depends_on":["placement","dfp_power_intent"]}]}}
+puts $json

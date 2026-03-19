@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+logs/
+reports/
+cpp/log_parser
+
+# Local interview prep notes (keep private)
+INTERVIEW_QA.md
+notes/
+
