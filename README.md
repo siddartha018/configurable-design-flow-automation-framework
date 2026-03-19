@@ -54,23 +54,23 @@ To change the flow order or toggle DFT/DFP, edit `tcl/flow.tcl` (JSON DAG output
 
 ```mermaid
 flowchart TD
-  TclFlow[tcl/flow.tcl] -->|"stdout JSON DAG"| PythonParse[Python: parse graph]
-  PythonParse --> Dag[Python: DAG scheduler]
-  Dag --> StageExec[Stages execute (simulate or command)]
-  StageExec --> Logs[logs/<run>/<stage>.log + .jsonl]
-  Logs --> CppParser[C++ log_parser]
-  CppParser --> Report[reports/report_###.txt]
+  TclFlow["tcl/flow.tcl"] -->|"stdout JSON DAG"| PythonParse["Python: parse graph"]
+  PythonParse --> Dag["Python: DAG scheduler"]
+  Dag --> StageExec["Stages execute (simulate or command)"]
+  StageExec --> Logs["logs/<run_name>/<stage>.log and .jsonl"]
+  Logs --> CppParser["C++ log_parser"]
+  CppParser --> Report["reports/report_###.txt"]
 ```
 
 ## DAG scheduling (chart)
 
 ```mermaid
 flowchart TD
-  Ready[ReadyQueue "deps satisfied"] --> Workers[ThreadPoolExecutor]
-  Workers --> Done[Completion events]
-  Done --> Update[Update deps + enqueue new ready]
+  Ready["ReadyQueue (deps satisfied)"] --> Workers["ThreadPoolExecutor"]
+  Workers --> Done["Completion events"]
+  Done --> Update["Update deps and enqueue new ready"]
   Update --> Ready
-  Done -->|"failure"| Skip[Skip downstream by default]
+  Done -->|"failure"| Skip["Skip downstream by default"]
 ```
 
 ## Run the framework
